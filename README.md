@@ -42,11 +42,11 @@ var forceClick = null;
 
 if (!debug) {
     // pretty code
-    if (spec.FORCE_TOUCH) {
+    if (spec.FORCE_CLICK) {
         new ForceClick().disable();
     }
 } else {
-    if (spec.FORCE_TOUCH) {
+    if (spec.FORCE_CLICK) {
         ForceClick.VERBOSE = true;
 
         forceClick = new ForceClick(function(event,   // @arg Event - Event Object
