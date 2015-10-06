@@ -1,0 +1,76 @@
+<!DOCTYPE html><html><head><title>ForceClick test</title>
+<meta name="viewport" content="width=device-width, user-scalable=no">
+<meta charset="utf-8"></head><body>
+
+<script src="../lib/WebModule.js"></script>
+<script>
+// publish to global
+WebModule.publish = true;
+</script>
+
+<script src="../node_modules/uupaa.useragent.js/node_modules/uupaa.webgldetector.js/lib/WebGLDetector.js"></script>
+<script src="../node_modules/uupaa.useragent.js/lib/UserAgent.js"></script>
+<script src="../node_modules/uupaa.spec.js/lib/SpecCatalog.js"></script>
+<script src="../node_modules/uupaa.spec.js/lib/Spec.js"></script>
+<script src="../lib/ForceClick.js"></script>
+
+<style>
+a[href] {
+  font-size: 20pt;
+}
+.disable-force-click {
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+</style>
+
+<h3>Enable default link action</h3>
+<div>
+  <p>Can longpress and force click on link navigation.</p>
+  <a href="http://google.co.jp">jump to google</a>
+</div>
+
+<h3>Disable default link action</h3>
+<div>
+  <p>Can't longpress and force click on link navigation.</p>
+  <a href="http://google.co.jp" class="disable-force-click">jump to google</a>
+  <p>force &lt;= 0.4 to blue</p>
+  <p>force &gt; 0.4 to yellow</p>
+</div>
+
+<script>
+var debug = true;
+var ua    = new UserAgent();
+var spec  = new Spec(ua);
+var forceClick = null;
+
+if (!debug) {
+    // pretty code
+    if (spec.FORCE_TOUCH) {
+        new ForceClick().disable();
+    }
+} else {
+    if (spec.FORCE_TOUCH) {
+        ForceClick.VERBOSE = true;
+        forceClick = new ForceClick(function(event, href, force) {
+            if (force <= 0.4) {
+                document.body.style.cssText = "background-color: blue";
+            } else {
+                document.body.style.cssText = "background-color: yellow";
+            }
+            setTimeout(function() {
+                document.body.style.cssText = "background-color: white";
+            }, 500);
+        });
+
+        forceClick.disable();
+    }
+}
+</script>
+
+
+</body></html>
+

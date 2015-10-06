@@ -1,23 +1,44 @@
-# ForceClick.js [![Build Status](https://travis-ci.org/uupaa/ForceClick.js.svg)](https://travis-ci.org/uupaa/ForceClick.js)
+<!DOCTYPE html><html><head><title>ForceClick test</title>
+<meta name="viewport" content="width=device-width, user-scalable=no">
+<meta charset="utf-8"></head><body>
 
-[![npm](https://nodei.co/npm/uupaa.forceclick.js.svg?downloads=true&stars=true)](https://nodei.co/npm/uupaa.forceclick.js/)
-
-Disable force click on link navigation
-
-- Please refer to [Spec](https://github.com/uupaa/ForceClick.js/wiki/) and [API Spec](https://github.com/uupaa/ForceClick.js/wiki/ForceClick) links.
-- The ForceClick.js is made of [WebModule](https://github.com/uupaa/WebModule).
-
-## Browser and NW.js(node-webkit)
-
-```js
-<script src="<module-dir>/lib/WebModule.js"></script>
-<script src="<module-dir>/lib/WebGLDetector.js"></script>
-<script src="<module-dir>/lib/UserAgent.js"></script>
-<script src="<module-dir>/lib/SpecCatalog.js"></script>
-<script src="<module-dir>/lib/Spec.js"></script>
-<script src="<module-dir>/lib/ForceClick.js"></script>
+<script src="../lib/WebModule.js"></script>
 <script>
+// publish to global
+WebModule.publish = true;
+</script>
 
+__MODULES__
+__SOURCES__
+
+<style>
+a[href] {
+  font-size: 20pt;
+}
+.disable-force-click {
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+</style>
+
+<h3>Enable default link action</h3>
+<div>
+  <p>Can longpress and force click on link navigation.</p>
+  <a href="http://google.co.jp">jump to google</a>
+</div>
+
+<h3>Disable default link action</h3>
+<div>
+  <p>Can't longpress and force click on link navigation.</p>
+  <a href="http://google.co.jp" class="disable-force-click">jump to google</a>
+  <p>force &lt;= 0.4 to blue</p>
+  <p>force &gt; 0.4 to yellow</p>
+</div>
+
+<script>
 var debug = true;
 var ua    = new UserAgent();
 var spec  = new Spec(ua);
@@ -49,8 +70,8 @@ if (!debug) {
         forceClick.disable();
     }
 }
-
 </script>
-```
 
+
+</body></html>
 
