@@ -55,12 +55,16 @@ if (!debug) {
 } else {
     if (spec.FORCE_TOUCH) {
         ForceClick.VERBOSE = true;
-        forceClick = new ForceClick(function(event, href, force) {
+
+        forceClick = new ForceClick(function(event,   // @arg Event - Event Object
+                                             href,    // @arg URLString - href value
+                                             force) { // @arg Number - force touch value. 0.0 - 1.0
             if (force <= 0.4) {
                 document.body.style.cssText = "background-color: blue";
             } else {
                 document.body.style.cssText = "background-color: yellow";
             }
+            // reset bg-color
             setTimeout(function() {
                 document.body.style.cssText = "background-color: white";
             }, 500);

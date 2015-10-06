@@ -10,6 +10,23 @@ Disable force click on link navigation
 ## Browser and NW.js(node-webkit)
 
 ```js
+<style>
+a[href] {
+  font-size: 20pt;
+}
+.disable-force-click {
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+</style>
+
+<p>
+  <a href="http://google.co.jp" class="disable-force-click">jump to google</a>
+</p>
+
 <script src="<module-dir>/lib/WebModule.js"></script>
 <script src="<module-dir>/lib/WebGLDetector.js"></script>
 <script src="<module-dir>/lib/UserAgent.js"></script>
